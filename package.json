@@ -1,0 +1,14 @@
+{
+  "name": "briefpaginaweb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "build-css": "npx tailwindcss -i ./css/input.css -o ./css/output.css --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.0.24"
+  }
+}
