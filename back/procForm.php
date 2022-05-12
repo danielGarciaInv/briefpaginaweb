@@ -464,7 +464,7 @@ $cabeceras = 'MIME-Version: 1.0' . "\r\n";
 $cabeceras .= 'Content-type: text/html; charset=utf-8' . "\r\n";
 $cabeceras .= 'From: contacto@invirtual.mx';
 
-if(var_dump(mail($para, $titulo, $mensaje, $cabeceras))){
+if(mail($para, $titulo, $mensaje, $cabeceras)){
     echo('true');
 }else{
     echo('false');
