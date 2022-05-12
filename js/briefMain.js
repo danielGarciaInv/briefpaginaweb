@@ -1,6 +1,11 @@
+const url = "http://localhost/briefpaginaweb/";
+
 const movPag = document.getElementById("movPag");
 const btnSig = document.querySelectorAll(".btnSig");
 const btnAnt = document.querySelectorAll(".btnAnt");
+const btnEnviarBrief = document.getElementById("btnEnviarBrief");
+const modalFinal = document.getElementById("modalFinal");
+const btnCerrarModal = document.getElementById("btnCerrarModal");
 var paso = 1;
 
 // ------------------------------------------------------------------- Eventos para los Botones
@@ -62,6 +67,103 @@ for (const btn of btnAnt) {
   });
 }
 
+btnEnviarBrief.addEventListener('click',(e)=>{
+  e.preventDefault();
+  let datos = new FormData();
+  // ---------------------------- Recolección de datos para enviarlos
+  /* Datos de contacto */
+  datos.append('nombreCliente',nombreCliente.value);
+  datos.append('correoCliente',correoCliente.value);
+  datos.append('telefonoCliente',telefonoCliente.value);
+
+  /* Datos de empresa */
+  datos.append('nombreEmpresa',nombreEmpresa.value);
+  datos.append('direccionEmpresa',direccionEmpresa.value);
+  datos.append('municipioEmpresa',municipioEmpresa.value);
+  datos.append('ciudadEmpresa',ciudadEmpresa.value);
+  datos.append('estadoEmpresa',estadoEmpresa.value);
+  datos.append('cpostalEmpresa',cpostalEmpresa.value);
+  datos.append('telefonoEmpresa',telefonoEmpresa.value);
+  
+  /* Info página */
+  checkDominios = document.getElementsByName('checkDominio');
+  for (let checkDominio of checkDominios){
+    if(checkDominio.checked){
+      datos.append('checkDominio',checkDominio.value);
+    }
+  }
+  datos.append('dominioEmpresa',dominioEmpresa.value);
+  datos.append('dominioDeseado',dominioDeseado.value);
+  datos.append('significadoNombre',significadoNombre.value);
+  datos.append('giroEmpresa',giroEmpresa.value);
+  datos.append('productosEmpresa',productosEmpresa.value);
+  datos.append('mercadoEmpresa',mercadoEmpresa.value);
+
+  let objetivosSitio = document.getElementsByName('objetivoSitio');
+  let objetivoSitio = [];
+  for (let objetivo of objetivosSitio) {
+    if(objetivo.checked || (objetivo.type == 'textarea' && objetivo.value != '')){
+      objetivoSitio.push(objetivo.value);
+    }
+  }
+  objetivoSitio = JSON.stringify(objetivoSitio);
+  datos.append('objetivoSitio',objetivoSitio);
+
+  let checksFunciones = document.getElementsByName('checkFunciones');
+  let checkFunciones = [];
+  for (let check of checksFunciones) {
+    if(check.checked || (check.type == 'text' && check.value != '')){
+      checkFunciones.push(check.value);
+    }
+  }
+  checkFunciones = JSON.stringify(checkFunciones);
+  datos.append('checkFunciones',checkFunciones);
+
+  datos.append('logotipoEmpresa',logotipoEmpresa.value);
+  datos.append('conReglasEstilos',conReglasEstilos.value);
+  datos.append('reglasEstilos',reglasEstilos.value);
+  datos.append('webReferencia',webReferencia.value);
+
+  /* Redes sociales */
+  let redesPrev = document.getElementsByName('redes');
+  let redes = [];
+  if(redesPrev.length > 0){
+    for (let red of redesPrev) {
+      redes.push(red.value);
+    }
+  }
+  redes = JSON.stringify(redes);
+  datos.append('redes',redes);
+
+  /* Estructura */
+  checksEstructura = document.getElementsByName('checkEstructura');
+  for (let checkEstructura of checksEstructura){
+    if(checkEstructura.checked){
+      datos.append('checkEstructura',checkEstructura.value);
+    }
+  }
+
+  /* Extra */
+  datos.append('cuentasEmpresa',cuentasEmpresa.value);
+  datos.append('desTresRenglones',desTresRenglones.value);
+  datos.append('palabrasClave',palabrasClave.value);
+
+  fetch(url+'back/procForm.php',{
+    method: 'POST',
+    body: datos
+  }).then(res => res.text()).then((r) => {
+    if(r == 'true'){
+      mostrarModal('Se ha enviado el brief correctamente!', '#2ca02c');
+    }else{
+      mostrarModal('Ha ocurrido un error, favor de intentarlo mas tarde!', '#c83737');
+    }
+  });
+});
+
+btnCerrarModal.addEventListener('click',(e)=>{
+  e.preventDefault();
+  window.location.reload();
+});
 // ------------------------------------------------------------------- Funciones para el Desplazamiento
 
 const desplazarDerecha = () => {
@@ -177,4 +279,12 @@ const validarCampoRadio = (nombreCampo) => {
   }
   label.classList.remove('hidden');
   return false;
+}
+
+// ------------------------------------------------------------------- Funcion para el resultado asincrono
+const mostrarModal = (mensaje, color) => {
+  document.getElementById('mensajeModal').textContent = mensaje;
+  document.getElementById('contIcono').style.background = color;
+  document.getElementById('svgIco').src = (color == '#2ca02c') ? './img/check.svg' : './img/xmark.svg';
+  modalFinal.classList.remove('hidden');
 }

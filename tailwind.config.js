@@ -1,5 +1,6 @@
 module.exports = {
-  content: ["./**/*.{html,js}"],
+  content: ["./**/*.{html,js,php}"],
+  // content: ["./back/procForm.php"],
   theme: {
     extend: {
       fontFamily: {

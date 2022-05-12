@@ -1,0 +1,17 @@
+/* ---------------------------------- Fuente ------------------------------- */
+@import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
+
+/* ---------------------------------- Tailwind ------------------------------- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------------------------------- Clases personalizadas ------------------------------- */
+
+.max-h-560 {
+  max-height: 560px;
+}
+
+.border-1{
+  border-width: 1px;
+}

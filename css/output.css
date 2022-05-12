@@ -1,8 +1,10 @@
+/* ---------------------------------- Fuente ------------------------------- */
+
 @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 
-/*
-! tailwindcss v3.0.24 | MIT License | https://tailwindcss.com
-*/
+/* ---------------------------------- Tailwind ------------------------------- */
+
+/* ! tailwindcss v3.0.24 | MIT License | https://tailwindcss.com */
 
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
@@ -571,14 +573,6 @@ Ensure the default browser behavior of the `hidden` attribute.
   left: -0.25rem;
 }
 
-.left-0{
-  left: 0px;
-}
-
-.right-0{
-  right: 0px;
-}
-
 .bottom-0{
   bottom: 0px;
 }
@@ -597,6 +591,10 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .z-20{
   z-index: 20;
+}
+
+.z-30{
+  z-index: 30;
 }
 
 .float-right{
@@ -772,6 +770,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 16rem;
 }
 
+.w-96{
+  width: 24rem;
+}
+
 .w-full{
   width: 100%;
 }
@@ -786,6 +788,18 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .w-8\/12{
   width: 66.666667%;
+}
+
+.w-20{
+  width: 5rem;
+}
+
+.w-16{
+  width: 4rem;
+}
+
+.w-12{
+  width: 3rem;
 }
 
 .max-w-screen-xl{
@@ -826,22 +840,6 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .border-separate{
   border-collapse: separate;
-}
-
-.rotate-45{
-  --tw-rotate: 45deg;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.rotate-12{
-  --tw-rotate: 12deg;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
-}
-
-.scale-150{
-  --tw-scale-x: 1.5;
-  --tw-scale-y: 1.5;
-  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
 .transform{
@@ -1573,6 +1571,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-radius: 0.25rem;
 }
 
+.rounded-full{
+  border-radius: 9999px;
+}
+
 .rounded-t{
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
@@ -1672,6 +1674,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(118 130 206 / var(--tw-border-opacity));
 }
 
+.border-invirtual-300{
+  --tw-border-opacity: 1;
+  border-color: rgb(83 98 194 / var(--tw-border-opacity));
+}
+
 .border-red-500{
   --tw-border-opacity: 1;
   border-color: rgb(239 68 68 / var(--tw-border-opacity));
@@ -1700,9 +1707,26 @@ Ensure the default browser behavior of the `hidden` attribute.
   background-color: rgb(53 67 149 / var(--tw-bg-opacity));
 }
 
+.bg-invirtual-300{
+  --tw-bg-opacity: 1;
+  background-color: rgb(83 98 194 / var(--tw-bg-opacity));
+}
+
 .bg-\[rgb\(255\2c 0\2c 0\)\]{
   --tw-bg-opacity: 1;
   background-color: rgb(255 0 0 / var(--tw-bg-opacity));
+}
+
+.bg-black\/100{
+  background-color: rgb(0 0 0 / 1);
+}
+
+.bg-black\/50{
+  background-color: rgb(0 0 0 / 0.5);
+}
+
+.bg-black\/75{
+  background-color: rgb(0 0 0 / 0.75);
 }
 
 .bg-\[url\(\'\.\.\.\'\)\]{
@@ -1843,6 +1867,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   padding: 0.5rem;
 }
 
+.p-4{
+  padding: 1rem;
+}
+
 .py-2{
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
@@ -1948,6 +1976,11 @@ Ensure the default browser behavior of the `hidden` attribute.
   line-height: 1.75rem;
 }
 
+.text-xl{
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
 .font-semibold{
   font-weight: 600;
 }
@@ -2037,6 +2070,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .text-gray-200{
   --tw-text-opacity: 1;
   color: rgb(229 231 235 / var(--tw-text-opacity));
+}
+
+.text-white{
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .underline{
@@ -2240,6 +2278,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
 }
 
+.shadow-xl{
+  --tw-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 .outline-none{
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -2401,6 +2445,8 @@ Ensure the default browser behavior of the `hidden` attribute.
   content: "hello";
 }
 
+/* ---------------------------------- Clases personalizadas ------------------------------- */
+
 input {
   outline: none;
 }
@@ -2424,10 +2470,58 @@ textarea {
   transition: margin 0.4s ease-in-out;
 }
 
+.border-1{
+  border-width: 1px;
+}
+
 @media (min-width: 768px) {
   .md\:h-97 {
     height: 97%;
   }
+}
+
+/* ---------------------------------- Keyframes ------------------------------- */
+
+@-webkit-keyframes movimientoTriangulos {
+  0%{
+    transform:translateY(0px) rotate(0deg);
+  }
+
+  50%{
+    transform:translateY(30px) rotate(-5deg);
+  }
+
+  100%{
+    transform:translateY(0px) rotate(0deg);
+  }
+}
+
+@keyframes movimientoTriangulos {
+  0%{
+    transform:translateY(0px) rotate(0deg);
+  }
+
+  50%{
+    transform:translateY(30px) rotate(-5deg);
+  }
+
+  100%{
+    transform:translateY(0px) rotate(0deg);
+  }
+}
+
+.trainguloL{
+  left: -20px;
+  -webkit-animation: movimientoTriangulos 5s ease-in-out infinite;
+          animation: movimientoTriangulos 5s ease-in-out infinite;
+}
+
+.trainguloR{
+  right: -40px;
+  -webkit-animation: movimientoTriangulos 5s ease-in-out infinite;
+          animation: movimientoTriangulos 5s ease-in-out infinite;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
 }
 
 .hover\:bg-invirtual-800:hover{
@@ -2506,6 +2600,14 @@ textarea {
 @media (min-width: 768px){
   .md\:w-10\/12{
     width: 83.333333%;
+  }
+
+  .md\:w-1\/2{
+    width: 50%;
+  }
+
+  .md\:flex-row{
+    flex-direction: row;
   }
 }
 

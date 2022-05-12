@@ -1,9 +1,12 @@
+/* ---------------------------------- Fuente ------------------------------- */
 @import url("https://fonts.googleapis.com/css2?family=Nunito&display=swap");
 
+/* ---------------------------------- Tailwind ------------------------------- */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ---------------------------------- Clases personalizadas ------------------------------- */
 input {
   outline: none;
 }
@@ -27,8 +30,29 @@ textarea {
   transition: margin 0.4s ease-in-out;
 }
 
+.border-1{
+  border-width: 1px;
+}
+
 @media (min-width: 768px) {
   .md\:h-97 {
     height: 97%;
   }
+}
+
+/* ---------------------------------- Keyframes ------------------------------- */
+@keyframes movimientoTriangulos {
+	0%{transform:translateY(0px) rotate(0deg);}
+	50%{transform:translateY(30px) rotate(-5deg);}
+	100%{transform:translateY(0px) rotate(0deg);}
+}
+.trainguloL{
+  left: -20px;
+  animation: movimientoTriangulos 5s ease-in-out infinite;
+}
+
+.trainguloR{
+  right: -40px;
+  animation: movimientoTriangulos 5s ease-in-out infinite;
+  animation-delay: 1s;
 }

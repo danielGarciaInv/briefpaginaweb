@@ -5,8 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Brief Página Web | Invirtual</title>
+    <script src="https://kit.fontawesome.com/4b34137ed7.js"></script>
     <link rel="stylesheet" href="./css/output.css" />
   </head>
+  <div class="modal hidden z-30 w-screen h-screen bg-black/75 fixed flex flex-row items-center justify-center" id="modalFinal">
+    <div class="tarjeta bg-white p-4 rounded-md shadow-xl flex flex-col">
+      <div class="fila flex flex-row justify-center">
+        <div class="p-2 w-12 rounded-full" id="contIcono" style="background: #2ca02c;">
+          <img id="svgIco" src="./img/check.svg">
+        </div>
+      </div>
+      <div class="fila py-2 flex flex-row justify-center">
+        <p id="mensajeModal" class="text-center"></p>
+      </div>
+      <div class="fila py-2 flex flex-row justify-center">
+        <button class="bg-invirtual-500 hover:bg-invirtual-800 px-2 py-1 rounded-md text-white" id="btnCerrarModal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+
   <body class="font-InvFont bg-gray-200 w-screen h-screen">
 
     <header class="w-screen bg-gray-invirtual fixed">
@@ -30,14 +47,14 @@
     <main
       class="w-screen max-w-screen-2xl h-full m-auto flex flex-row items-center justify-center relative overflow-hidden"
     >
-      <img class="absolute z-0 w-64 left-0 rotate-45 " src="./img/tianguloL.svg">
-      <img class="absolute z-0 w-64 right-0 rotate-12 scale-150 " src="./img/tianguloL.svg">
+      <img class="trainguloL absolute z-0 w-64" src="./img/tianguloL.svg">
+      <img class="trainguloR absolute z-0 w-96" src="./img/tianguloR.svg">
       <div
         class="w-full md:w-10/12 lg:w-4/12 z-20 h-auto md:h-97 max-h-560 px-6 py-4 bg-white shadow-2xl"
         style="margin-top: 5%;"
       >
         <div class="contForm w-full h-full overflow-hidden">
-          <form action="#" method="POST" enctype="multipart/form-data" class="formulario h-full flex flex-row">
+          <form method="POST" enctype="multipart/form-data" class="formulario h-full flex flex-row">
             <!-- Datos de contacto -->
             <div
               class="contPaso h-full flex flex-col justify-between"
@@ -746,6 +763,7 @@
                 </button>
                 <button
                   class="bg-invirtual-500 hover:bg-invirtual-800 transition-colors font-medium text-gray-200 px-2 py-1 rounded-md"
+                  id="btnEnviarBrief"
                 >
                   Enviar Brief
                 </button>
@@ -761,37 +779,37 @@
       </div>
     </main>
 
-    <script src="./js/animaciones.js"></script>
     <script type="text/javascript">
-    const btnNuevoEnlace = document.getElementById('btnNuevoEnlace');
-
-    btnNuevoEnlace.addEventListener('click',(e) => {
-      e.preventDefault();
-      nuevoCampoEnlace();
-    });
-
-    const nuevoCampoEnlace = () => {
-      let nuevoCampoRed = document.createElement('div');
-      nuevoCampoRed.setAttribute('class','campoRed w-full flex flex-col lg:flex-row');
-
-      let inputTitulo = document.createElement('input');
-      inputTitulo.setAttribute('class','w-4/12 border-b-2 border-invirtual-200 px-2 mr-2 bg-transparent');
-      inputTitulo.type = 'text';
-      inputTitulo.name = 'redes';
-      inputTitulo.placeholder = 'Titulo:';
-
-      let inputLink = document.createElement('input');
-      inputLink.setAttribute('class','w-8/12 border-b-2 border-invirtual-200 px-2 bg-transparent');
-      inputLink.type = 'text';
-      inputLink.name = 'redes';
-      inputLink.placeholder = 'Link:';
-
-      nuevoCampoRed.appendChild(inputTitulo);
-      nuevoCampoRed.appendChild(inputLink);
-
-      contCamposRed = document.getElementById('contCamposRed');
-      contCamposRed.appendChild(nuevoCampoRed);
-    }
-  </script>
+      const btnNuevoEnlace = document.getElementById('btnNuevoEnlace');
+      
+      btnNuevoEnlace.addEventListener('click',(e) => {
+        e.preventDefault();
+        nuevoCampoEnlace();
+      });
+      
+      const nuevoCampoEnlace = () => {
+        let nuevoCampoRed = document.createElement('div');
+        nuevoCampoRed.setAttribute('class','campoRed w-full flex flex-col lg:flex-row');
+        
+        let inputTitulo = document.createElement('input');
+        inputTitulo.setAttribute('class','w-4/12 border-b-2 border-invirtual-200 px-2 mr-2 bg-transparent');
+        inputTitulo.type = 'text';
+        inputTitulo.name = 'redes';
+        inputTitulo.placeholder = 'Titulo:';
+        
+        let inputLink = document.createElement('input');
+        inputLink.setAttribute('class','w-8/12 border-b-2 border-invirtual-200 px-2 bg-transparent');
+        inputLink.type = 'text';
+        inputLink.name = 'redes';
+        inputLink.placeholder = 'Link:';
+        
+        nuevoCampoRed.appendChild(inputTitulo);
+        nuevoCampoRed.appendChild(inputLink);
+        
+        contCamposRed = document.getElementById('contCamposRed');
+        contCamposRed.appendChild(nuevoCampoRed);
+      }
+      </script>
+    <script src="./js/briefMain.js"></script>
   </body>
 </html>
