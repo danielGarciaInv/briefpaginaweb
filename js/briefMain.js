@@ -199,7 +199,7 @@ const validarPasoUno = () => {
 }
 
 const validarPasoDos = () => {
-  if (validarCampoTexto('nombreEmpresa') && validarCampoTexto('direccionEmpresa') && validarCampoTexto('municipioEmpresa') && validarCampoTexto('ciudadEmpresa') && validarCampoTexto('estadoEmpresa') && validarCampoTexto('cpostalEmpresa') && validarCampoTexto('telefonoEmpresa')){
+  if (validarCampoTexto('nombreEmpresa') && validarCampoTexto('direccionEmpresa') && validarCampoTexto('coloniaEmpresa') && validarCampoTexto('estadoEmpresa') && validarCampoTexto('paisEmpresa') && validarCampoTexto('cpostalEmpresa') && validarCampoTexto('telefonoEmpresa')){
     return true;
   }else{
     return false;
