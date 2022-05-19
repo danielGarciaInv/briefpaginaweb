@@ -50,7 +50,7 @@
       <img class="trainguloL absolute z-0 w-64" src="./img/tianguloL.svg">
       <img class="trainguloR absolute z-0 w-96" src="./img/tianguloR.svg">
       <div
-        class="w-full md:w-10/12 lg:w-4/12 z-20 h-auto md:h-97 max-h-560 px-6 py-4 bg-white shadow-2xl"
+        class="w-full md:w-10/12 lg:w-4/12 z-20 h-auto md:min-h-560 px-6 py-4 bg-white shadow-2xl"
         style="margin-top: 5%;"
       >
         <div class="contForm w-full h-full overflow-hidden">
@@ -126,33 +126,23 @@
                   />
                 </div>
                 <div class="campo flex flex-col my-2 text-md">
-                  <label for="direccionEmpresa">Dirección: <span class="text-red-500 font-semibold hidden"> * Requerido</span></label>
+                  <label for="direccionEmpresa">Calle y Número: <span class="text-red-500 font-semibold hidden"> * Requerido</span></label>
                   <input
                     class="border-b-2 border-invirtual-200 px-2 bg-transparent"
                     type="text"
                     name="direccionEmpresa"
                     id="direccionEmpresa"
-                    placeholder="Calle, número y colonia"
+                    placeholder="Introducir Calle y Número"
                   />
                 </div>
                 <div class="campo flex flex-col my-2 text-md">
-                  <label for="municipioEmpresa">Alcaldía / Municipio: <span class="text-red-500 font-semibold hidden"> * Requerido</span></label>
+                  <label for="coloniaEmpresa">Colonia: <span class="text-red-500 font-semibold hidden"> * Requerido</span></label>
                   <input
                     class="border-b-2 border-invirtual-200 px-2 bg-transparent"
                     type="text"
-                    name="municipioEmpresa"
-                    id="municipioEmpresa"
-                    placeholder="Introducir Alcaldía o Municipio"
-                  />
-                </div>
-                <div class="campo flex flex-col my-2 text-md">
-                  <label for="ciudadEmpresa">Ciudad: <span class="text-red-500 font-semibold hidden"> * Requerido</span></label>
-                  <input
-                    class="border-b-2 border-invirtual-200 px-2 bg-transparent"
-                    type="text"
-                    name="ciudadEmpresa"
-                    id="ciudadEmpresa"
-                    placeholder="Introducir Ciudad"
+                    name="coloniaEmpresa"
+                    id="coloniaEmpresa"
+                    placeholder="Introducir Colonia"
                   />
                 </div>
                 <div class="campo flex flex-col my-2 text-md">
@@ -163,6 +153,16 @@
                     name="estadoEmpresa"
                     id="estadoEmpresa"
                     placeholder="Introducir Estado"
+                  />
+                </div>
+                <div class="campo flex flex-col my-2 text-md">
+                  <label for="paisEmpresa">País: <span class="text-red-500 font-semibold hidden"> * Requerido</span></label>
+                  <input
+                    class="border-b-2 border-invirtual-200 px-2 bg-transparent"
+                    type="text"
+                    name="paisEmpresa"
+                    id="paisEmpresa"
+                    placeholder="Introducir País"
                   />
                 </div>
                 <div class="campo flex flex-col my-2 text-md">

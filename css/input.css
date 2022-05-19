@@ -17,8 +17,8 @@ textarea {
   outline: none;
 }
 
-.max-h-560 {
-  max-height: 560px;
+.min-h-560 {
+  min-height: 560px;
 }
 
 .formulario {
@@ -37,6 +37,10 @@ textarea {
 @media (min-width: 768px) {
   .md\:h-97 {
     height: 97%;
+  }
+
+  .md\:min-h-560 {
+    min-height: 560px;
   }
 }
 

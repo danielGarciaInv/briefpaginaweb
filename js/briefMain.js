@@ -79,9 +79,9 @@ btnEnviarBrief.addEventListener('click',(e)=>{
   /* Datos de empresa */
   datos.append('nombreEmpresa',nombreEmpresa.value);
   datos.append('direccionEmpresa',direccionEmpresa.value);
-  datos.append('municipioEmpresa',municipioEmpresa.value);
-  datos.append('ciudadEmpresa',ciudadEmpresa.value);
+  datos.append('coloniaEmpresa',municipioEmpresa.value);
   datos.append('estadoEmpresa',estadoEmpresa.value);
+  datos.append('paisEmpresa',ciudadEmpresa.value);
   datos.append('cpostalEmpresa',cpostalEmpresa.value);
   datos.append('telefonoEmpresa',telefonoEmpresa.value);
   
