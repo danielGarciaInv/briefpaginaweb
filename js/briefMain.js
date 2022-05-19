@@ -79,10 +79,11 @@ btnEnviarBrief.addEventListener('click',(e)=>{
   /* Datos de empresa */
   datos.append('nombreEmpresa',nombreEmpresa.value);
   datos.append('direccionEmpresa',direccionEmpresa.value);
-  datos.append('coloniaEmpresa',municipioEmpresa.value);
+  datos.append('coloniaEmpresa',coloniaEmpresa.value);
+  datos.append('municipioEmpresa',municipioEmpresa.value);
   datos.append('estadoEmpresa',estadoEmpresa.value);
-  datos.append('paisEmpresa',ciudadEmpresa.value);
   datos.append('cpostalEmpresa',cpostalEmpresa.value);
+  datos.append('paisEmpresa',paisEmpresa.value);
   datos.append('telefonoEmpresa',telefonoEmpresa.value);
   
   /* Info página */
@@ -199,7 +200,7 @@ const validarPasoUno = () => {
 }
 
 const validarPasoDos = () => {
-  if (validarCampoTexto('nombreEmpresa') && validarCampoTexto('direccionEmpresa') && validarCampoTexto('coloniaEmpresa') && validarCampoTexto('estadoEmpresa') && validarCampoTexto('paisEmpresa') && validarCampoTexto('cpostalEmpresa') && validarCampoTexto('telefonoEmpresa')){
+  if (validarCampoTexto('nombreEmpresa') && validarCampoTexto('direccionEmpresa') && validarCampoTexto('coloniaEmpresa') && validarCampoTexto('municipioEmpresa') && validarCampoTexto('estadoEmpresa') && validarCampoTexto('cpostalEmpresa') && validarCampoTexto('paisEmpresa') && validarCampoTexto('telefonoEmpresa')){
     return true;
   }else{
     return false;
