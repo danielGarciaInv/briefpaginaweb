@@ -1,3 +1,5 @@
+/* Control: Hola KDE */
+
 const url = "http://localhost/briefpaginaweb/";
 
 const movPag = document.getElementById("movPag");
