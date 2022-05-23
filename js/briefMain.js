@@ -71,36 +71,38 @@ for (const btn of btnAnt) {
 
 btnEnviarBrief.addEventListener('click',(e)=>{
   e.preventDefault();
-  let datos = new FormData();
+  let data = new FormData();
+  let datos = {};
+
   // ---------------------------- Recolección de datos para enviarlos
   /* Datos de contacto */
-  datos.append('nombreCliente',nombreCliente.value);
-  datos.append('correoCliente',correoCliente.value);
-  datos.append('telefonoCliente',telefonoCliente.value);
+  datos.nombreCliente = nombreCliente.value;
+  datos.correoCliente = correoCliente.value;
+  datos.telefonoCliente = telefonoCliente.value;
 
   /* Datos de empresa */
-  datos.append('nombreEmpresa',nombreEmpresa.value);
-  datos.append('direccionEmpresa',direccionEmpresa.value);
-  datos.append('coloniaEmpresa',coloniaEmpresa.value);
-  datos.append('municipioEmpresa',municipioEmpresa.value);
-  datos.append('estadoEmpresa',estadoEmpresa.value);
-  datos.append('cpostalEmpresa',cpostalEmpresa.value);
-  datos.append('paisEmpresa',paisEmpresa.value);
-  datos.append('telefonoEmpresa',telefonoEmpresa.value);
+  datos.nombreEmpresa = nombreEmpresa.value;
+  datos.direccionEmpresa = direccionEmpresa.value;
+  datos.coloniaEmpresa = coloniaEmpresa.value;
+  datos.municipioEmpresa = municipioEmpresa.value;
+  datos.estadoEmpresa = estadoEmpresa.value;
+  datos.cpostalEmpresa = cpostalEmpresa.value;
+  datos.paisEmpresa = paisEmpresa.value;
+  datos.telefonoEmpresa = telefonoEmpresa.value;
   
   /* Info página */
   checkDominios = document.getElementsByName('checkDominio');
   for (let checkDominio of checkDominios){
     if(checkDominio.checked){
-      datos.append('checkDominio',checkDominio.value);
+      datos.checkDominio = checkDominio.value;
     }
   }
-  datos.append('dominioEmpresa',dominioEmpresa.value);
-  datos.append('dominioDeseado',dominioDeseado.value);
-  datos.append('significadoNombre',significadoNombre.value);
-  datos.append('giroEmpresa',giroEmpresa.value);
-  datos.append('productosEmpresa',productosEmpresa.value);
-  datos.append('mercadoEmpresa',mercadoEmpresa.value);
+  datos.dominioEmpresa = dominioEmpresa.value;
+  datos.dominioDeseado = dominioDeseado.value;
+  datos.significadoNombre = significadoNombre.value;
+  datos.giroEmpresa = giroEmpresa.value;
+  datos.productosEmpresa = productosEmpresa.value;
+  datos.mercadoEmpresa = mercadoEmpresa.value;
 
   let objetivosSitio = document.getElementsByName('objetivoSitio');
   let objetivoSitio = [];
@@ -109,8 +111,8 @@ btnEnviarBrief.addEventListener('click',(e)=>{
       objetivoSitio.push(objetivo.value);
     }
   }
-  objetivoSitio = JSON.stringify(objetivoSitio);
-  datos.append('objetivoSitio',objetivoSitio);
+  // objetivoSitio = JSON.stringify(objetivoSitio);
+  datos.objetivoSitio = objetivoSitio;
 
   let checksFunciones = document.getElementsByName('checkFunciones');
   let checkFunciones = [];
@@ -119,13 +121,13 @@ btnEnviarBrief.addEventListener('click',(e)=>{
       checkFunciones.push(check.value);
     }
   }
-  checkFunciones = JSON.stringify(checkFunciones);
-  datos.append('checkFunciones',checkFunciones);
+  // checkFunciones = JSON.stringify(checkFunciones);
+  datos.checkFunciones = checkFunciones;
 
-  datos.append('logotipoEmpresa',logotipoEmpresa.value);
-  datos.append('conReglasEstilos',conReglasEstilos.value);
-  datos.append('reglasEstilos',reglasEstilos.value);
-  datos.append('webReferencia',webReferencia.value);
+  datos.logotipoEmpresa = logotipoEmpresa.value;
+  datos.conReglasEstilos = conReglasEstilos.value;
+  datos.reglasEstilos = reglasEstilos.value;
+  datos.webReferencia = webReferencia.value;
 
   /* Redes sociales */
   let redesPrev = document.getElementsByName('redes');
@@ -135,25 +137,25 @@ btnEnviarBrief.addEventListener('click',(e)=>{
       redes.push(red.value);
     }
   }
-  redes = JSON.stringify(redes);
-  datos.append('redes',redes);
+  // redes = JSON.stringify(redes);
+  datos.redes = redes;
 
   /* Estructura */
   checksEstructura = document.getElementsByName('checkEstructura');
   for (let checkEstructura of checksEstructura){
     if(checkEstructura.checked){
-      datos.append('checkEstructura',checkEstructura.value);
+      datos.checkEstructura = checkEstructura.value;
     }
   }
 
   /* Extra */
-  datos.append('cuentasEmpresa',cuentasEmpresa.value);
-  datos.append('desTresRenglones',desTresRenglones.value);
-  datos.append('palabrasClave',palabrasClave.value);
+  datos.cuentasEmpresa = cuentasEmpresa.value;
+  datos.desTresRenglones = desTresRenglones.value;
+  datos.palabrasClave = palabrasClave.value;
 
   fetch(url+'back/procForm.php',{
     method: 'POST',
-    body: datos
+    body: data
   }).then(res => res.text()).then((r) => {
     if(r == 'true'){
       mostrarModal('Se ha enviado el brief correctamente!', '#2ca02c');
