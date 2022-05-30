@@ -8,6 +8,12 @@ const btnAnt = document.querySelectorAll(".btnAnt");
 const btnEnviarBrief = document.getElementById("btnEnviarBrief");
 const modalFinal = document.getElementById("modalFinal");
 const btnCerrarModal = document.getElementById("btnCerrarModal");
+const exp = {
+  campoTexto: /^[a-zA-Z\-\.\,\"\s]{2,256}$/,
+  campoEmail: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
+  campoUrl: /^[a-zA-Z\-\,\.\s\:\/]{2,256}$/
+}
+
 var paso = 1;
 
 // ------------------------------------------------------------------- Eventos para los Botones
@@ -70,99 +76,105 @@ for (const btn of btnAnt) {
 }
 
 btnEnviarBrief.addEventListener('click',(e)=>{
-  e.preventDefault();
-  let data = new FormData();
-  let datos = {};
-
-  // ---------------------------- Recolección de datos para enviarlos
-  /* Datos de contacto */
-  datos.nombreCliente = nombreCliente.value;
-  datos.correoCliente = correoCliente.value;
-  datos.telefonoCliente = telefonoCliente.value;
-
-  /* Datos de empresa */
-  datos.nombreEmpresa = nombreEmpresa.value;
-  datos.direccionEmpresa = direccionEmpresa.value;
-  datos.coloniaEmpresa = coloniaEmpresa.value;
-  datos.municipioEmpresa = municipioEmpresa.value;
-  datos.estadoEmpresa = estadoEmpresa.value;
-  datos.cpostalEmpresa = cpostalEmpresa.value;
-  datos.paisEmpresa = paisEmpresa.value;
-  datos.telefonoEmpresa = telefonoEmpresa.value;
+  if(validarPasoNueve()){
+    e.preventDefault();
+    let data = new FormData();
+    let datos = {};
   
-  /* Info página */
-  checkDominios = document.getElementsByName('checkDominio');
-  for (let checkDominio of checkDominios){
-    if(checkDominio.checked){
-      datos.checkDominio = checkDominio.value;
+    // ---------------------------- Recolecci贸n de datos para enviarlos
+    /* Datos de contacto */
+    datos.contactName = nombreCliente.value;
+    datos.contactEmail = correoCliente.value;
+    datos.contactPhone = telefonoCliente.value;
+  
+    /* Datos de empresa */
+    datos.businessName = nombreEmpresa.value;
+    datos.street = direccionEmpresa.value;
+    datos.suburb = coloniaEmpresa.value;
+    datos.municipality = municipioEmpresa.value;
+    datos.state = estadoEmpresa.value;
+    datos.postalCode = cpostalEmpresa.value;
+    datos.country = paisEmpresa.value;
+    datos.phone = telefonoEmpresa.value;
+    
+    /* Info p谩gina */
+    checkDominios = document.getElementsByName('checkDominio');
+    for (let checkDominio of checkDominios){
+      if(checkDominio.checked){
+        datos.domainCheck = checkDominio.value;
+      }
     }
+    datos.website = dominioEmpresa.value;
+    datos.desiredWebsite = dominioDeseado.value;
+    datos.nameMeaning = significadoNombre.value;
+    datos.businessLine = giroEmpresa.value;
+    datos.companyProducts = productosEmpresa.value;
+    datos.companyMarket = mercadoEmpresa.value;
+  
+    let objetivosSitio = document.getElementsByName('objetivoSitio');
+    let objetivoSitio = [];
+    for (let objetivo of objetivosSitio) {
+      if(objetivo.checked || (objetivo.type == 'textarea' && objetivo.value != '')){
+        objetivoSitio.push(objetivo.value);
+      }
+    }
+    // objetivoSitio = JSON.stringify(objetivoSitio);
+    datos.siteGoal = objetivoSitio;
+  
+    let checksFunciones = document.getElementsByName('checkFunciones');
+    let checkFunciones = [];
+    for (let check of checksFunciones) {
+      if(check.checked || (check.type == 'text' && check.value != '')){
+        checkFunciones.push(check.value);
+      }
+    }
+    // checkFunciones = JSON.stringify(checkFunciones);
+    datos.functionsCheck = checkFunciones;
+  
+    datos.logo = logotipoEmpresa.value;
+    datos.withStyleRules = conReglasEstilos.value;
+    datos.styleRules = reglasEstilos.value;
+    datos.webReference = webReferencia.value;
+  
+    /* Redes sociales */
+    let redesPrev = document.getElementsByName('redes');
+    let redes = [];
+    if(redesPrev.length > 0){
+      for (let red of redesPrev) {
+        redes.push(red.value);
+      }
+    }
+    // redes = JSON.stringify(redes);
+    datos.networks = redes;
+  
+    /* Estructura */
+    checksEstructura = document.getElementsByName('checkEstructura');
+    for (let checkEstructura of checksEstructura){
+      if(checkEstructura.checked){
+        datos.structureCheck = checkEstructura.value;
+      }
+    }
+  
+    /* Extra */
+    datos.companyAccounts = cuentasEmpresa.value;
+    datos.threeLines = desTresRenglones.value;
+    datos.keywords = palabrasClave.value;
+  
+    data.append('datos',datos);
+    
+    fetch('https://centralinvirzo.xyz/app/api/v1/brief/web',{
+      method: "POST",
+      body: JSON.stringify(datos),
+    headers: {
+        Accept: "applicaton/json",
+        'Content-type': 'application/json; charset=UTF-8'
+    }
+    }).then((res) => {
+        return res.text();
+    }).then((r) => console.log(r));
+  }else{
+
   }
-  datos.dominioEmpresa = dominioEmpresa.value;
-  datos.dominioDeseado = dominioDeseado.value;
-  datos.significadoNombre = significadoNombre.value;
-  datos.giroEmpresa = giroEmpresa.value;
-  datos.productosEmpresa = productosEmpresa.value;
-  datos.mercadoEmpresa = mercadoEmpresa.value;
-
-  let objetivosSitio = document.getElementsByName('objetivoSitio');
-  let objetivoSitio = [];
-  for (let objetivo of objetivosSitio) {
-    if(objetivo.checked || (objetivo.type == 'textarea' && objetivo.value != '')){
-      objetivoSitio.push(objetivo.value);
-    }
-  }
-  // objetivoSitio = JSON.stringify(objetivoSitio);
-  datos.objetivoSitio = objetivoSitio;
-
-  let checksFunciones = document.getElementsByName('checkFunciones');
-  let checkFunciones = [];
-  for (let check of checksFunciones) {
-    if(check.checked || (check.type == 'text' && check.value != '')){
-      checkFunciones.push(check.value);
-    }
-  }
-  // checkFunciones = JSON.stringify(checkFunciones);
-  datos.checkFunciones = checkFunciones;
-
-  datos.logotipoEmpresa = logotipoEmpresa.value;
-  datos.conReglasEstilos = conReglasEstilos.value;
-  datos.reglasEstilos = reglasEstilos.value;
-  datos.webReferencia = webReferencia.value;
-
-  /* Redes sociales */
-  let redesPrev = document.getElementsByName('redes');
-  let redes = [];
-  if(redesPrev.length > 0){
-    for (let red of redesPrev) {
-      redes.push(red.value);
-    }
-  }
-  // redes = JSON.stringify(redes);
-  datos.redes = redes;
-
-  /* Estructura */
-  checksEstructura = document.getElementsByName('checkEstructura');
-  for (let checkEstructura of checksEstructura){
-    if(checkEstructura.checked){
-      datos.checkEstructura = checkEstructura.value;
-    }
-  }
-
-  /* Extra */
-  datos.cuentasEmpresa = cuentasEmpresa.value;
-  datos.desTresRenglones = desTresRenglones.value;
-  datos.palabrasClave = palabrasClave.value;
-
-  fetch(url+'back/procForm.php',{
-    method: 'POST',
-    body: data
-  }).then(res => res.text()).then((r) => {
-    if(r == 'true'){
-      mostrarModal('Se ha enviado el brief correctamente!', '#2ca02c');
-    }else{
-      mostrarModal('Ha ocurrido un error, favor de intentarlo mas tarde!', '#c83737');
-    }
-  });
 });
 
 btnCerrarModal.addEventListener('click',(e)=>{
@@ -212,7 +224,7 @@ const validarPasoDos = () => {
 }
 
 const validarPasoTres = () => {
-  if (validarCampoRadio('checkDominio') && validarCampoTexto('dominioDeseado') && validarCampoTexto('significadoNombre') && validarCampoTexto('giroEmpresa')){
+  if (validarCampoRadio('checkDominio') && validarCampoUrl('dominioDeseado') && validarCampoTextoChar('significadoNombre') && validarCampoTextoChar('giroEmpresa')){
     return true;
   }else{
     return false;
@@ -220,7 +232,7 @@ const validarPasoTres = () => {
 }
 
 const validarPasoCuatro = () => {
-  if (validarCampoTexto('productosEmpresa') && validarCampoTexto('mercadoEmpresa')){
+  if (validarCampoTextoChar('productosEmpresa') && validarCampoTextoChar('mercadoEmpresa')){
     return true;
   }else{
     return false;
@@ -236,7 +248,7 @@ const validarPasoCinco = () => {
 }
 
 const validarPasoSeis = () => {
-  if (validarCampoTexto('conReglasEstilos')){
+  if (validarCampoTextoChar('conReglasEstilos') && validarCampoTextoCharNoRequerido('reglasEstilos') && validarCampoTextoCharNoRequerido('webReferencia')){
     return true;
   }else{
     return false;
@@ -249,6 +261,14 @@ const validarPasoSiete = () => {
 
 const validarPasoOcho = () => {
   if (validarCampoRadio('checkEstructura')){
+    return true;
+  }else{
+    return false;
+  }
+}
+
+const validarPasoNueve = () => {
+  if (validarCampoEmail('cuentasEmpresa') && validarCampoTextoChar('desTresRenglones') && validarCampoTextoChar('palabrasClave')){
     return true;
   }else{
     return false;
@@ -270,6 +290,82 @@ const validarCampoTexto = (nombreCampo) => {
     input.classList.add('border-invirtual-200');
     label.classList.add('hidden');
     return true;
+  }
+}
+
+const validarCampoTextoChar = (nombreCampo) => {
+  let input = document.getElementById(nombreCampo);
+  let campo = input.parentNode;
+  let label = campo.querySelector(`label[for=${nombreCampo}] span`);
+
+  if(input.value != '' && exp.campoTexto.test(input.value)){
+    input.classList.remove('border-red-500');
+    input.classList.add('border-invirtual-200');
+    label.classList.add('hidden');
+    return true;
+  }else{
+    alert('Favor de validar el campo \n Se permiten solo letras y "-.,');
+    input.classList.remove('border-invirtual-200');
+    input.classList.add('border-red-500');
+    label.classList.remove('hidden');
+    return false;
+  }
+}
+
+const validarCampoTextoCharNoRequerido = (nombreCampo) => {
+  let input = document.getElementById(nombreCampo);
+  let campo = input.parentNode;
+  let label = campo.querySelector(`label[for=${nombreCampo}] span`);
+
+  if(input.value == '' || exp.campoTexto.test(input.value)){
+    input.classList.remove('border-red-500');
+    input.classList.add('border-invirtual-200');
+    label.classList.add('hidden');
+    return true;
+  }else{
+    alert('Favor de validar el campo \n Se permiten solo letras y "-.,');
+    input.classList.remove('border-invirtual-200');
+    input.classList.add('border-red-500');
+    label.classList.remove('hidden');
+    return false;
+  }
+}
+
+const validarCampoEmail = (nombreCampo) => {
+  let input = document.getElementById(nombreCampo);
+  let campo = input.parentNode;
+  let label = campo.querySelector(`label[for=${nombreCampo}] span`);
+
+  if(input.value == '' || exp.campoEmail.test(input.value)){
+    input.classList.remove('border-red-500');
+    input.classList.add('border-invirtual-200');
+    label.classList.add('hidden');
+    return true;
+  }else{
+    alert('Favor de validar el campo \n El formato es "correo@mail.com"');
+    input.classList.remove('border-invirtual-200');
+    input.classList.add('border-red-500');
+    label.classList.remove('hidden');
+    return false;
+  }
+}
+
+const validarCampoUrl = (nombreCampo) => {
+  let input = document.getElementById(nombreCampo);
+  let campo = input.parentNode;
+  let label = campo.querySelector(`label[for=${nombreCampo}] span`);
+
+  if(input.value != '' && exp.campoUrl.test(input.value)){
+    input.classList.remove('border-red-500');
+    input.classList.add('border-invirtual-200');
+    label.classList.add('hidden');
+    return true;
+  }else{
+    alert('Favor de validar el campo \n Se permiten: http(s)://(www).example.com ó (www).example.com');
+    input.classList.remove('border-invirtual-200');
+    input.classList.add('border-red-500');
+    label.classList.remove('hidden');
+    return false;
   }
 }
 
