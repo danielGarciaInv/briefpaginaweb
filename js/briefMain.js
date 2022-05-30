@@ -9,9 +9,9 @@ const btnEnviarBrief = document.getElementById("btnEnviarBrief");
 const modalFinal = document.getElementById("modalFinal");
 const btnCerrarModal = document.getElementById("btnCerrarModal");
 const exp = {
-  campoTexto: /^[a-zA-Z\-\.\,\"\s]{2,256}$/,
+  campoTexto: /^[a-zA-Z\-\.\,\"\s\u00C0-\u017F]{2,256}$/,
   campoEmail: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
-  campoUrl: /^[a-zA-Z\-\,\.\s\:\/]{2,256}$/
+  campoUrl: /^[a-zA-Z\-\,\.\s\:\/\u00C0-\u017F]{2,256}$/
 }
 
 var paso = 1;
