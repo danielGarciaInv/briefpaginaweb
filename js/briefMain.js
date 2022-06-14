@@ -1,6 +1,4 @@
-/* Control: Hola KDE */
-
-const url = "http://localhost/briefpaginaweb/";
+const url = "https://invirtual.mx/briefpaginaweb/";
 
 const movPag = document.getElementById("movPag");
 const btnSig = document.querySelectorAll(".btnSig");
@@ -78,6 +76,8 @@ for (const btn of btnAnt) {
 btnEnviarBrief.addEventListener('click',(e)=>{
   if(validarPasoNueve()){
     e.preventDefault();
+    
+    // Intercambiar los nombres para el llamado de la API
     let data = new FormData();
     let datos = {};
   
@@ -97,7 +97,7 @@ btnEnviarBrief.addEventListener('click',(e)=>{
     datos.country = paisEmpresa.value;
     datos.phone = telefonoEmpresa.value;
     
-    /* Info p谩gina */
+    /* Info página */
     checkDominios = document.getElementsByName('checkDominio');
     for (let checkDominio of checkDominios){
       if(checkDominio.checked){
@@ -118,7 +118,6 @@ btnEnviarBrief.addEventListener('click',(e)=>{
         objetivoSitio.push(objetivo.value);
       }
     }
-    // objetivoSitio = JSON.stringify(objetivoSitio);
     datos.siteGoal = objetivoSitio;
   
     let checksFunciones = document.getElementsByName('checkFunciones');
@@ -128,7 +127,6 @@ btnEnviarBrief.addEventListener('click',(e)=>{
         checkFunciones.push(check.value);
       }
     }
-    // checkFunciones = JSON.stringify(checkFunciones);
     datos.functionsCheck = checkFunciones;
   
     datos.logo = logotipoEmpresa.value;
@@ -144,7 +142,6 @@ btnEnviarBrief.addEventListener('click',(e)=>{
         redes.push(red.value);
       }
     }
-    // redes = JSON.stringify(redes);
     datos.networks = redes;
   
     /* Estructura */
@@ -160,9 +157,12 @@ btnEnviarBrief.addEventListener('click',(e)=>{
     datos.threeLines = desTresRenglones.value;
     datos.keywords = palabrasClave.value;
   
-    data.append('datos',datos);
+    // Hacer append del objeto datos (SOLO PARA EL ENVIO POR CORREO)
+    data.append('datos',JSON.stringify(datos));
     
-    fetch('https://centralinvirzo.xyz/app/api/v1/brief/web',{
+    // --------------------- Fetch a la API
+    
+    /*fetch('https://centralinvirzo.xyz/app/api/v1/briefs/web',{
       method: "POST",
       body: JSON.stringify(datos),
     headers: {
@@ -171,9 +171,20 @@ btnEnviarBrief.addEventListener('click',(e)=>{
     }
     }).then((res) => {
         return res.text();
-    }).then((r) => console.log(r));
-  }else{
-
+    }).then((r) => console.log(r));*/
+    
+    // --------------------- Fetch para enviar Correos
+    
+    fetch(url+'back/procForm.php',{
+      method: 'POST',
+      body: data,
+    }).then(res => res.text()).then((r) => {
+      if(r == 'true'){
+        mostrarModal('Se ha enviado el brief correctamente!', '#2ca02c');
+      }else{
+        mostrarModal('Ha ocurrido un error, favor de intentarlo mas tarde!', '#c83737');
+      }
+    });
   }
 });
 
@@ -336,7 +347,7 @@ const validarCampoEmail = (nombreCampo) => {
   let campo = input.parentNode;
   let label = campo.querySelector(`label[for=${nombreCampo}] span`);
 
-  if(input.value == '' || exp.campoEmail.test(input.value)){
+  if(input.value != '' || exp.campoEmail.test(input.value)){
     input.classList.remove('border-red-500');
     input.classList.add('border-invirtual-200');
     label.classList.add('hidden');
