@@ -98,6 +98,7 @@ btnEnviarBrief.addEventListener('click',(e)=>{
     datos.phone = telefonoEmpresa.value;
     
     /* Info página */
+    datos.tradename = razonEmpresa.value;
     checkDominios = document.getElementsByName('checkDominio');
     for (let checkDominio of checkDominios){
       if(checkDominio.checked){
@@ -235,7 +236,7 @@ const validarPasoDos = () => {
 }
 
 const validarPasoTres = () => {
-  if (validarCampoRadio('checkDominio') && validarCampoUrl('dominioDeseado') && validarCampoTextoChar('significadoNombre') && validarCampoTextoChar('giroEmpresa')){
+  if (validarCampoTexto('razonEmpresa') && validarCampoRadio('checkDominio') && validarCampoUrl('dominioDeseado') && validarCampoTextoChar('significadoNombre') && validarCampoTextoChar('giroEmpresa')){
     return true;
   }else{
     return false;
