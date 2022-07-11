@@ -8,6 +8,7 @@ const modalFinal = document.getElementById("modalFinal");
 const btnCerrarModal = document.getElementById("btnCerrarModal");
 const exp = {
   campoTexto: /^[a-zA-Z\-\.\,\"\s\u00C0-\u017F]{2,256}$/,
+  campoTextoNoAcento: /^[a-zA-Z\-\.\,\"\s]{2,256}$/,
   campoEmail: /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
   campoUrl: /^[a-zA-Z\-\,\.\s\:\/\u00C0-\u017F]{2,256}$/
 }
@@ -242,7 +243,7 @@ const validarPasoUno = () => {
 }
 
 const validarPasoDos = () => {
-  if (validarCampoTexto('nombreEmpresa') && validarCampoTexto('direccionEmpresa') && validarCampoTexto('coloniaEmpresa') && validarCampoTexto('municipioEmpresa') && validarCampoTexto('estadoEmpresa') && validarCampoTexto('cpostalEmpresa') && validarCampoTexto('paisEmpresa') && validarCampoTexto('telefonoEmpresa')){
+  if (validarCampoTexto('nombreEmpresa') && validarCampoTextoNoAcento('direccionEmpresa') && validarCampoTexto('coloniaEmpresa') && validarCampoTexto('municipioEmpresa') && validarCampoTexto('estadoEmpresa') && validarCampoTexto('cpostalEmpresa') && validarCampoTexto('paisEmpresa') && validarCampoTexto('telefonoEmpresa')){
     return true;
   }else{
     return false;
@@ -316,6 +317,25 @@ const validarCampoTexto = (nombreCampo) => {
     input.classList.add('border-invirtual-200');
     label.classList.add('hidden');
     return true;
+  }
+}
+
+const validarCampoTextoNoAcento = (nombreCampo) => {
+  let input = document.getElementById(nombreCampo);
+  let campo = input.parentNode;
+  let label = campo.querySelector(`label[for=${nombreCampo}] span`);
+
+  if(input.value != '' && exp.campoTextoNoAcento.test(input.value)){
+    input.classList.remove('border-red-500');
+    input.classList.add('border-invirtual-200');
+    label.classList.add('hidden');
+    return true;
+  }else{
+    alert('Favor de validar el campo\nNo colocar acentos\nSe permiten solo letras y "-.,');
+    input.classList.remove('border-invirtual-200');
+    input.classList.add('border-red-500');
+    label.classList.remove('hidden');
+    return false;
   }
 }
 
